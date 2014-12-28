@@ -1,1 +1,0 @@
-{"ssid":"fdsgfdsg","question":"Type here your preferred question","answers":"Type the possible answers, delimited with \";\", like \"Answer 1;Answer2;..."}
