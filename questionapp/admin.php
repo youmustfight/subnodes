@@ -15,6 +15,8 @@
 $question_file = "poll_data.txt";
 $question = json_decode(file_get_contents($question_file), true);
 
+$home_url = '/var/www';
+
 if ($_GET['ssid'] && $_GET['question'] && $_GET['answers'])
 {
     $question['ssid'] = $_GET['ssid'];
@@ -23,10 +25,7 @@ if ($_GET['ssid'] && $_GET['question'] && $_GET['answers'])
 
     file_put_contents($question_file, json_encode($question));
 
-    echo exec('whoami');
-
-    exec("sudo sudo sed -i \"s/\(ssid *= *\).*/\\1".$question['ssid']."/\" /diynet/rpi_www/question/test.conf");
-    echo "running sudo sed -i \"s/\(ssid *= *\).*/\\1".$question['ssid']."/\" /var/www/html/diynet/rpi_www/question/test.conf";
+    shell_exec("sed -i \"s/\(ssid *= *\).*/\\1".$question['ssid']."/\" ".$home_url."/questionapp/test.conf");
 
 }
 
