@@ -30,12 +30,11 @@ function show_vote_control($poll_id) {
 	$poll = $VALID_POLLS[$poll_id];
 
 	// Output vote control
-	echo("<div class=\"voteContainer\">\r\n");
+	echo("<div>\r\n");
 	echo("\t<form class=\"vote\" method=\"post\" action=\"" . $POLL_URL . "vote.php\">\r\n");
-	echo("\t<fieldset>\r\n");
-	//if(!empty($poll->legend) && sizeof($poll->legend) > 0) {
-		//echo("\t<legend>" . htmlspecialchars($poll->legend) . "</legend>\r\n");
-	//}
+	if(!empty($poll->legend) && sizeof($poll->legend) > 0) {
+		echo("\t<legend>" . htmlspecialchars($poll->legend) . "</legend>\r\n");
+	}
 	echo("\t<p class=\"question\">\r\n");
 	echo("\t\t" . htmlspecialchars($poll->question) . "\r\n");
 	echo("\t</p>\r\n\t<p>\r\n");
@@ -55,8 +54,8 @@ function show_vote_control($poll_id) {
 			} else {
 				echo(htmlspecialchars($description));
 			}
-            if ($description == "Other:")
-                echo ("<input id='other_answer' type=text size=40></input>");
+            if ($description == "Other")
+                echo ("<br/><input id='other_answer' type=text size=40></input><br/>");
 			echo("<br />\r\n");
 		}
 		
@@ -83,24 +82,13 @@ function show_vote_control($poll_id) {
 		
 	}
 	echo("\t\t<input type=\"hidden\" name=\"" . htmlspecialchars($POLL_ID_PARAM_NAME) . "\" value=\"" . htmlspecialchars($poll_id) . "\" />\r\n");
-	echo("\t\t<input type=\"submit\" value=\"" . htmlspecialchars($SUBMIT_BUTTON_STRING) . "\" class=\"submit\" />\r\n");
-
-	//echo("\t</p>\r\n\t<p class=\"currentResults\">\r\n");
+	echo("\t\t<input type=\"submit\" value=\"" . htmlspecialchars($SUBMIT_BUTTON_STRING) . "\" class=\"submit\" /><br/>\r\n");
+	echo("\t</p>\r\n\t<p class=\"currentResults\">\r\n");
 	// Show results link
-	//echo("\t\t<a href=\"" . $POLL_URL . "results.php?" . htmlspecialchars($POLL_ID_PARAM_NAME) . "=" . htmlspecialchars($poll_id) . "\">" . htmlspecialchars($VIEW_RESULTS_STRING) . "</a>\r\n");
-	//echo("\t</p>\r\n");
-    //
-    
-    echo("<div id=resultsdiv>");
-    show_poll_results($poll_id);
-    echo("</div>");
-
-	echo("\t</fieldset>\r\n");
+	echo("\t\t<a href=\"" . $POLL_URL . "results.php?" . htmlspecialchars($POLL_ID_PARAM_NAME) . "=" . htmlspecialchars($poll_id) . "\">" . htmlspecialchars($VIEW_RESULTS_STRING) . "</a><br/>\r\n");
+	echo("\t\t<a href=\"./admin.php\">admin</a>\r\n");
 	echo("\t</form>\r\n");
-
-
 	echo("</div>\r\n");
-
 	
 }
 
@@ -131,9 +119,9 @@ function show_poll_results($poll_id) {
 	}
 	
 	// Show question
-	//echo("\t<p class=\"question\">\r\n");
-	//echo("\t\t" . htmlspecialchars($poll->question) . "\r\n");
-	//echo("\t</p>\r\n");
+	echo("\t<p class=\"question\">\r\n");
+	echo("\t\t" . htmlspecialchars($poll->question) . "\r\n");
+	echo("\t</p>\r\n");
 	
 	// Start table for results
 	echo("<table class=\"pollTable\">\r\n");

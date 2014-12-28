@@ -30,5 +30,6 @@
 	show_vote_control('1');
 	
 ?> 
+
 </body>
 </html>

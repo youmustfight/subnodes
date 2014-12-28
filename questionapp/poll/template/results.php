@@ -15,9 +15,6 @@
 <link href="template/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
-<h1>Current Poll Results</h1>
-
 <?php the_current_poll_results(); ?>
 
 <p><a href="<?php the_return_to_url(); ?>">Go back</a></p>

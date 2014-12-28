@@ -28,7 +28,7 @@ $MAX_POLL_BAR_WIDTH = 200;
 // Whether or not the script should prevent the same IP address 
 // from voting multiple times on the same poll.
 // Set to FALSE to allow duplicate votes.  
-$PREVENT_DUPLICATE_VOTES = TRUE;
+$PREVENT_DUPLICATE_VOTES = FALSE;
 
 // Whether or not vote counts should be displayed. 
 // If set to FALSE, only the percentages will be shown.  
@@ -63,16 +63,26 @@ $NO_VOTE_SELECTED_ERROR_MSG = 'You forgot to select a value!';
 
 $VALID_POLLS = array();	// The keys of this associative array are the poll IDs
 
+$home_url = "/var/www/html/diynet/git/subnodes/subnodes";
+
+$question_file = $home_url."/questionapp/poll/poll.conf";
+$question = json_decode(file_get_contents($question_file), true);
+
 // First poll definition
 $p = new Poll;
-$p->question = "Did you like the 313C keynote?";	// Question displayed to the user
+$p->question = $question['question'];	// Question displayed to the user
 $p->returnToURL = "../example.php";				// Specify the URL to return to for this poll; may be relative or absolute
-$p->legend = "First Poll";						// Form legend; leave empty for none
+//$p->legend = "First Poll";						// Form legend; leave empty for none
 $p->control_type = $CONTROL_RADIOBUTTONS;		// Control type; $CONTROL_RADIOBUTTONS or $CONTROL_COMBOBOX
-$p->add_value("1", "Yes");						// Poll value ID and a display string
-$p->add_value("2", "No");
-//$p->add_value("3", "Blue");
-$p->add_value("4", "Other:");
+$answers = explode(";", $question['answers']);
+$vote_id = 1;
+
+foreach($answers as $answer) 
+{
+    $p->add_value($vote_id, $answer);			
+    $vote_id = $vote_id+1;
+}
+
 $VALID_POLLS["1"] = $p;							// "1" is the poll ID
 
 // Second poll definition

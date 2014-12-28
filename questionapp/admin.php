@@ -12,10 +12,12 @@
 
 <?php
 
-$question_file = "poll_data.txt";
-$question = json_decode(file_get_contents($question_file), true);
+$home_url = '/var/www/html/diynet/git/subnodes/subnodes';
 
-$home_url = '/var/www';
+$question_file = 'questionapp/poll/poll.conf';
+$question = json_decode(file_get_contents($home_url."/".$question_file), true);
+
+
 
 if ($_GET['ssid'] && $_GET['question'] && $_GET['answers'])
 {
@@ -27,26 +29,40 @@ if ($_GET['ssid'] && $_GET['question'] && $_GET['answers'])
 
     shell_exec("sed -i \"s/\(ssid *= *\).*/\\1".$question['ssid']."/\" ".$home_url."/questionapp/test.conf");
 
+    //exec("sudo /etc/init.d/networking restart");
+
 }
 
 
 ?> 
 
 <form method=GET>
-<input name=ssid type=text size=32 value="Type here the SSID name (up to 32 characters)"></input>
+Your desired SSID name (up to 32 characters):
+<br/>
+<input name=ssid type=search size=32 value="<?php echo $question['ssid'];?>"></input>
 <br/>
 <br/>
 
-<input name=question type=text size=50 value="Type here your preferred question"></input>
+Your preferred question:
+<br/>
+<input name=question type=search size=40 value="<?php echo $question['question']?>"></input>
 <br/>
 <br/>
 
-<input name=answers type=text size=100 value='Type the possible answers, delimited with ";", like "Answer 1;Answer2;...'</input>
+The possible answers (delimited with ";"):
+<br/>
+<input name=answers type=text size=40 value="<?php echo $question['answers']?>"</input>
 <br/>
 <br/>
 
 <input type=submit value=Go!></input>
 </form>
+<br/>
+
+<a href='./example.php'>go to_poll</a>
+<br/>
+<a href='./reset.php'>reset_poll</a>
+
 
 </body>
 </html>

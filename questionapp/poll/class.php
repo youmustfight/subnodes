@@ -37,10 +37,8 @@ class Poll {
     }
 
     function add_value($id, $description, $url = NULL) {
-
         $this->values[$id] = $description;
         $this->urls[$id] = $url;
-
     }
 
 }

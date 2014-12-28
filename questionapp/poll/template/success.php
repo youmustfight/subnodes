@@ -16,17 +16,11 @@
 </head>
 <body>
 
-<h1>Vote Saved</h1>
-
-<p>Your vote has been saved.  Thank you!</p>
-
-Before seeing the vote results, what percentage of votes do you think
-are the same as yours?
-
-<input type=number min=0 max=100></input>
-
+<div class="voteContainer">
 
 <?php the_current_poll_results(); ?>
+
+</div>
 
 <p><a href="<?php the_return_to_url(); ?>">Go back</a></p>
 
