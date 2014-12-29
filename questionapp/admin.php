@@ -12,9 +12,10 @@
 
 <?php
 
-$home_url = '/var/www/html/diynet/git/subnodes/subnodes';
+$path = getcwd();
+//echo "path=".$path;
 
-$question_file = 'questionapp/poll/poll.conf';
+$question_file = $path.'/poll/poll.conf';
 $question = json_decode(file_get_contents($home_url."/".$question_file), true);
 
 
@@ -27,7 +28,7 @@ if ($_GET['ssid'] && $_GET['question'] && $_GET['answers'])
 
     file_put_contents($question_file, json_encode($question));
 
-    shell_exec("sed -i \"s/\(ssid *= *\).*/\\1".$question['ssid']."/\" ".$home_url."/questionapp/test.conf");
+    shell_exec("sed -i \"s/\(ssid *= *\).*/\\1".$question['ssid']."/\" ".$path."/test.conf");
 
     //exec("sudo /etc/init.d/networking restart");
 

@@ -63,9 +63,16 @@ $NO_VOTE_SELECTED_ERROR_MSG = 'You forgot to select a value!';
 
 $VALID_POLLS = array();	// The keys of this associative array are the poll IDs
 
-$home_url = "/var/www/html/diynet/git/subnodes/subnodes";
+$path = getcwd();
 
-$question_file = $home_url."/questionapp/poll/poll.conf";
+$pos = strpos($path, "poll");
+
+if (!$pos)
+    $path = $path."/poll";
+
+//echo "path=".$path;
+
+$question_file = $path."/poll.conf";
 $question = json_decode(file_get_contents($question_file), true);
 
 // First poll definition
