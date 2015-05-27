@@ -1,8 +1,8 @@
 #! /bin/bash
 #
-# Subnodes uninstall script. Removes dnsmasq, hostapd, bridge-utils, batctl, iw. Does *not* yet remove Node.js. Deletes subnoes folder and files within.
+# Subnodes uninstall script. Removes dnsmasq, hostapd, bridge-utils, batctl, iw. Does *not* yet remove Node.js. Deletes subnodes folder and files within.
 # Sarah Grant
-# Updated 17 April 2015
+# Updated 27 May 2015
 #
 # TO-DO
 # - Remove node.js
@@ -23,7 +23,6 @@ case $yn in
 		clear
 		echo "Disabling the batman-adv kernel..."
 		# remove the batman-adv module to be started on boot
-		#sed -i '$a batman-adv' /etc/modules
 		modprobe -r batman-adv;
 		echo ""
 
@@ -56,11 +55,9 @@ case $yn in
 		echo -en "[OK]\n"
 
 		# Remove startup scripts and delete
-		echo -en "Disabling and deleting startup subnodes startup scripts... 			"
-		update-rc.d -f subnodes_mesh remove
-		rm /etc/init.d/subnodes_mesh
-		update-rc.d -f subnodes_ap remove
-		rm /etc/init.d/subnodes_ap
+		echo -en "Disabling and deleting startup subnodes startup script... 			"
+		update-rc.d -f subnodes remove
+		rm /etc/init.d/subnodes
 
 		echo "Deleting subnodes folder			"
 		cd /home/pi/
