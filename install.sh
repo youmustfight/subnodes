@@ -84,7 +84,7 @@ echo "Installing Node.js..."
 wget http://node-arm.herokuapp.com/node_latest_armhf.deb
 sudo dpkg -i node_latest_armhf.deb
 echo ""
-echo "Enabling the batman-adv kernel..."
+echo "Enabling the batman-adv kernel module..."
 echo ""
 # add the batman-adv module to be started on boot
 sed -i '$a batman-adv' /etc/modules
@@ -122,47 +122,6 @@ if [ -n "$t1" ]; then DHCP_NETMASK="$t1";fi
 
 read -p "DHCP length of lease [$DHCP_LEASE]: " -e t1
 if [ -n "$t1" ]; then DHCP_LEASE="$t1";fi
-
-# create hostapd init file
-echo -en "Creating default hostapd file...			"
-cat <<EOF > /etc/default/hostapd
-DAEMON_CONF="/etc/hostapd/hostapd.conf"
-EOF
-rc=$?
-if [[ $rc != 0 ]] ; then
-	echo -en "[FAIL]\n"
-	echo ""
-	exit $rc
-else
-	echo -en "[OK]\n"
-fi
-
-# create hostapd configuration with user's settings
-echo -en "Creating hostapd.conf file...				"
-cat <<EOF > /etc/hostapd/hostapd.conf
-interface=ap0
-bridge=br0
-driver=$RADIO_DRIVER
-country_code=$AP_COUNTRY
-ctrl_interface=/var/run/hostapd
-ctrl_interface_group=0
-ssid=$AP_SSID
-hw_mode=g
-channel=$AP_CHAN
-beacon_int=100
-auth_algs=1
-wpa=0
-macaddr_acl=0
-wmm_enabled=1
-ap_isolate=1
-EOF
-rc=$?
-if [[ $rc != 0 ]] ; then
-	echo -en "[FAIL]\n"
-	exit $rc
-else
-	echo -en "[OK]\n"
-fi
 
 # backup the existing interfaces file
 echo -en "Creating backup of network interfaces configuration file... 			"
@@ -205,6 +164,48 @@ if [[ $rc != 0 ]] ; then
 else
 	echo -en "[OK]\n"
 fi
+
+# create hostapd init file
+echo -en "Creating default hostapd file...			"
+cat <<EOF > /etc/default/hostapd
+DAEMON_CONF="/etc/hostapd/hostapd.conf"
+EOF
+rc=$?
+if [[ $rc != 0 ]] ; then
+	echo -en "[FAIL]\n"
+	echo ""
+	exit $rc
+else
+	echo -en "[OK]\n"
+fi
+
+# create hostapd configuration with user's settings
+echo -en "Creating hostapd.conf file...				"
+cat <<EOF > /etc/hostapd/hostapd.conf
+interface=ap0
+bridge=br0
+driver=$RADIO_DRIVER
+country_code=$AP_COUNTRY
+ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0
+ssid=$AP_SSID
+hw_mode=g
+channel=$AP_CHAN
+beacon_int=100
+auth_algs=1
+wpa=0
+macaddr_acl=0
+wmm_enabled=1
+ap_isolate=1
+EOF
+rc=$?
+if [[ $rc != 0 ]] ; then
+	echo -en "[FAIL]\n"
+	exit $rc
+else
+	echo -en "[OK]\n"
+fi
+
 
 # CONFIGURE dnsmasq
 echo -en "Creating dnsmasq configuration file... 			"
