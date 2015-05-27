@@ -223,16 +223,6 @@ else
 	echo -en "[OK]\n"
 fi
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# COPY OVER THE SUBNODES START UP SCRIPT + enable services
-#
-clear
-update-rc.d hostapd enable
-update-rc.d dnsmasq enable
-cp scripts/subnodes.sh /etc/init.d/subnodes
-chmod 755 /etc/init.d/subnodes
-update-rc.d subnodes defaults
-
 # INSTALLING node.js chat room
 echo "Installing chat room..."
 # go back to our subnodes directory
@@ -242,6 +232,16 @@ cd /home/pi/subnodes/
 sudo npm install
 sudo npm install -g nodemon
 echo "Done!"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# COPY OVER THE SUBNODES START UP SCRIPT + enable services
+#
+clear
+update-rc.d hostapd enable
+update-rc.d dnsmasq enable
+cp scripts/subnodes.sh /etc/init.d/subnodes
+chmod 755 /etc/init.d/subnodes
+update-rc.d subnodes defaults
 
 read -p "Do you wish to reboot now? [N] " yn
 	case $yn in
