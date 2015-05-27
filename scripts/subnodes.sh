@@ -2,9 +2,9 @@
 # /etc/init.d/subnodes_ap
 # starts up ap0 interface and hostapd for broadcasting a wireless network
 
-NAME=subnodes_ap
+NAME=subnodes
 DESC="Brings up mesh and wireless access point for connecting to web server running on the device."
-DAEMON_PATH="/home/pi/subnodes"
+DAEMON_PATH=/home/pi/$NAME
 DAEMONOPTS="sudo NODE_ENV=production nodemon subnode.js"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
