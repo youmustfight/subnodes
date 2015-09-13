@@ -14,6 +14,10 @@ PHY_MESH="phy1"
 	case "$1" in
 		start)
 			echo "Starting $NAME access point..."
+			# bring down hostapd + dnsmasq to ensure wlan0 is brought up first
+			service hostapd stop
+			service dnsmasq stop
+			
 			# associate the ap0 interface to a physical devices
 			iw phy $PHY_AP interface add ap0 type __ap
 
