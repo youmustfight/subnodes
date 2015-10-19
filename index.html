@@ -2,34 +2,60 @@
 <HTML>
   <head>
     <title>subnodes</title>
-    <link href="css/foundation.min.css" rel="stylesheet" type="text/css">
-    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
-  	<ul>
-  		<li><h2>subnodes</h2></li>
-  		<!-- <li><a href="/tutorial.html">Tutorial</a></li> -->
-      <li><a href="https://github.com/chootka/subnodes" target="_blank">Github</a></li>
-      <li><a href="https://twitter.com/woolypixel" target="_blank">Twitter</a></li>
-      <li><a href="mailto:info@subnodes.org">Email</a></li>
-  	</ul>
-  	<hr>
-  	<p>The Subnodes project is an open source initiative focused on streamlining the process of setting up a <a href="http://www.raspberrypi.org/" target="_blank">Raspberry Pi</a> as a wireless access point for distributing content, media, and shared digital experiences. The device behaves as a web server, creates its own local area network, and does not connect with the Internet. This is key for the sake of offering a space where people can communicate anonymously and freely, as well as maximizing the portability of the network–no dependability on an internet connection means the device can be taken and remain active anywhere. The devices are also mesh enabled, implementing the <a href="http://www.open-mesh.org/projects/batman-adv/wiki" target="_blank">BATMAN Advanced</a> routing protocol.</p>
+    <div id="content">
 
-  	<p>Support for Subnodes has been provided by <a href="http://eyebeam.org/" target="_blank">Eyebeam</a>. Source code can be found over on  <a href="https://github.com/chootka/subnodes" target="_blank">github</a>, which includes an installation script and detailed installation instructions.
+      <div class="container">
+        <img src="img/logo.png">
+      </div>
 
-    <p>To get in contact, <a href="mailto:info@subnodes.org">email us</a>.</p>
+      <div class="container">
+        <a class="btn btn-default float-right" href="https://github.com/youmustfight/subnodes/tree/dev-dashboard">Github</a>
+        <a class="btn btn-default float-right" href="mailto:info@subnodes.org">Email Us</a>
+      </div>
 
-    <div class="about">
-      <h3>Hardware</h3>
-      <p>Subnodes runs off a <a href="http://www.newark.com/raspberry-pi/raspbrry-modb-512m/model-b-assembled-board-only/dp/43W5302" target="_blank">Raspberry Pi Model B</a>, <a href="http://www.amazon.com/gp/product/B003VNKNE6/" target="_blank">8GB class 10 SD card</a>, <a href="http://www.amazon.com/gp/product/B007BWFXYS/" target="_blank">wireless adapater</a> running the rt5370 chipset, and optional <a href="http://www.amazon.com/gp/product/B00AJA75Y0/" target="_blank">battery</a>, if you need to get mobile with your device. An additional <a href="http://www.amazon.com/gp/product/B007BWFXYS/" target="_blank">wireless adapter</a> is added for running the mesh point.</p>
-      <h3>Software</h3>
-      <p>Subnodes networking is set up using linux software packages <a href="http://wireless.kernel.org/en/users/Documentation/hostapd" target="_blank">hostapd</a> and <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html" target="_blank">dnsmasq</a>.</p>
+      <div class="container">
+        <h2>Getting Started</h2>
+      </div>
 
-      <p>The latest version of Raspbian comes with the latest BATMAN advanced module installed, so mesh-enabling your device is as simple as turning the module on and running a few commands.</p>
+      <div class="container">
+        <h5>1) Get the Hardware</h5>
+        <p>Subnodes runs off a <a href="http://www.newark.com/raspberry-pi/raspbrry-modb-512m/model-b-assembled-board-only/dp/43W5302" target="_blank">Raspberry Pi Model B</a>, <a href="http://www.amazon.com/gp/product/B003VNKNE6/" target="_blank">8GB class 10 SD card</a>, 2-3x<a href="http://www.amazon.com/gp/product/B007BWFXYS/" target="_blank">wireless adapater</a> running the rt5370 chipset, and optional <a href="http://www.amazon.com/gp/product/B00AJA75Y0/" target="_blank">battery</a>, if you need to get mobile with your device. The additional <a href="http://www.amazon.com/gp/product/B007BWFXYS/" target="_blank">wireless adapters</a> can be used for running the mesh point and connecting the Raspberry Pi to the greater internet if data needs to be uploaded or custom apps installed.</p>
 
-      <p>Detailed installation instructions and an installation script can be found over on <a href="https://github.com/chootka/subnodes" target="_blank">github</a>.</p>
+        <h5>2) Download Subnodes</h5>
+        <p>The preconfigured disk-image is not yet available, so you'll have to clone <a href="https://github.com/youmustfight/subnodes/tree/dev-dashboard">the subnodes repository</a> and run install_subnodes.sh through your Raspberry Pi</p>
+
+        <h5>3) That's it!</h5>
+        <p>With your Subnodes configured Raspberry Pi, just plug it in anywhere. You'll notice a subnodes wifi appear which when you log into, will let you reconfigure your Raspberry Pi to do whatever you want.</p>
+      </div>
+
+      <div class="container">
+        <h2>About the Project</h2>
+      </div>
+
+      <div class="container">
+        <p>The Subnodes project is an open source initiative focused on streamlining the process of setting up a <a href="http://www.raspberrypi.org/" target="_blank">Raspberry Pi</a> as a wireless access point for distributing content, media, and shared digital experiences. The device behaves as a web server, creates its own local area network, and does not connect with the Internet. This is key for the sake of offering a space where people can communicate anonymously and freely, as well as maximizing the portability of the network–no dependability on an internet connection means the device can be taken and remain active anywhere. The devices are also mesh enabled, implementing the <a href="http://www.open-mesh.org/projects/batman-adv/wiki" target="_blank">BATMAN Advanced</a> routing protocol.
+        </p>
+
+        <p>Subnodes networking is set up using linux software packages <a href="http://wireless.kernel.org/en/users/Documentation/hostapd" target="_blank">hostapd</a> and <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html" target="_blank">dnsmasq</a>. The latest version of Raspbian comes with the latest BATMAN advanced module installed, so mesh-enabling your device is as simple as turning the module on and running a few commands.</p>
+
+        <p>Initial support for Subnodes has been provided by <a href="http://eyebeam.org/" target="_blank">Eyebeam</a>. Source code for the initiating project can be found over on  <a href="https://github.com/chootka/subnodes" target="_blank">github</a>, which includes an installation script and detailed installation instructions. The version you're seeing added a GUI for headless and easy network reconfiguration and to allow apps to be installed and configured. This version can also be found on <a href="https://github.com/youmustfight/subnodes/tree/dev-dashboard" target="_blank">github</a>.
+        </p>
+
+        
+
+      </div>
+
     </div>
+
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/dat.gui.min.js" type="text/javascript"></script>
+    <script src="js/node-animation.js" type="text/javascript"></script>
+
   </body>
  </html>
